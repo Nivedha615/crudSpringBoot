@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="card" mt-3>
+        <h3 class="text-center">Users</h3>
+        <div class="card-body">
+            <table class="table table-stripped">
+                <thead>
+                    <th>ID</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of paginated">
+                     <td>{{user.id}}</td>
+                     <td>{{user.firstName}}</td>
+                     <td>{{user.lastName}}</td>
+                     <td>{{user.email}}</td>
+                     <td>
+                        <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+                     </td>
+                     <td>
+                        <button (click)="updateUser(user.id)" class="btn btn-info" style="margin-left: 10px;">Update</button>
+                     </td>
+                    </tr>
+
+                </tbody>
+                
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end page-bar">
+                  <li class="page-item"><a class="page-link">Page #</a></li>
+                  <li class="page-item" *ngFor="let page of pages" [ngClass]="{active : page === currentpage}" ><a class="page-link" (click)="getPages(page)" >{{page}}</a></li>
+                  
+                 
+                </ul>
+              </nav>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end page-bar">
+                  <li class="page-item" [ngClass]="{disabled : currentpage === 1}"><a class="page-link" (click)="prevPage()" style="cursor: pointer;">Previous</a></li>
+                
+                  <li class="page-item"><a class="page-link"  (click)="nextPage(currentpage)" [ngClass]="{disabled : currentpage === totalPages}" style="cursor: pointer;">Next</a></li>
+                 
+                </ul>
+              </nav>
+              
+        </div>
+    </div>
+</div>

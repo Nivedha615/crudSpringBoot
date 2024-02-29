@@ -1,0 +1,54 @@
+<div class="col-md-6 offset-md-3">
+    <h3>Create User</h3>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="firstName">FirstName</label>
+            <input class="form-control" type="text" [(ngModel)]="user.firstName" formControlName="name" required
+                pattern="[a-zA-Z ]*">
+
+
+            <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)"
+                class="alert alert-danger">
+                <div *ngIf="registerForm.get('name')?.errors?.['required']">
+                    First Name is required.
+                </div>
+                <div *ngIf="registerForm.get('name')?.errors?.['pattern']">
+                    Allowed Chars are a-z,A-Z and space
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">LastName</label>
+            <input class="form-control" type="text" [(ngModel)]="user.lastName" formControlName="lastName" required
+                pattern="[a-zA-Z ]*">
+            <div *ngIf="registerForm.get('lastName')?.invalid && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)"
+                class="alert alert-danger">
+                <div *ngIf="registerForm.get('lastName')?.errors?.['required']">
+                    Last Name is required.
+                </div>
+                <div *ngIf="registerForm.get('lastName')?.errors?.['pattern']">
+                    Allowed Chars are a-z,A-Z and space
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" [(ngModel)]="user.email" formControlName="email" email="true"
+                required>
+
+            <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)"
+                class="alert alert-danger">
+                <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                    Email is required.
+                </div>
+                <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                    Enter a valid email address
+                </div>
+
+            </div>
+        </div>
+        <button class="btn btn-success" style="margin-top: 26px;" [disabled]="!registerForm.valid">Submit</button>
+    </form>
+</div>

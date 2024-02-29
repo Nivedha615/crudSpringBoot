@@ -1,0 +1,13 @@
+<h1 styles="color:red"> PRODUCTS</h1>
+<table class="table table-bordered table-primary">
+   <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+   </tr>
+   <tr *ngFor="let products of data">
+    <td>{{products.id}}</td>
+    <td>{{products.title}}</td>
+    <td>{{products.price}}</td>
+   </tr>
+</table>
